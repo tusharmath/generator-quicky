@@ -1,6 +1,5 @@
 {
   "name": "generator-quicky",
-  "version": "1.0.0",
   "description": "creates npm module ",
   "files": [
     "app"
@@ -14,11 +13,19 @@
     "yeoman-generator": "^0.24.1"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^1.2.0"
+    "cz-conventional-changelog": "^1.2.0",
+    "semantic-release": "^4.3.5"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tusharmath/generator-quicky.git"
+  },
+  "scripts": {
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   }
 }
