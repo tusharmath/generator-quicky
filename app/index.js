@@ -1,5 +1,9 @@
 const generators = require('yeoman-generator')
 const mkdir = require('mkdirp')
+const defaultName = () => {
+  const path = process.cwd().split('/')
+  return path[path.length - 1]
+}
 const devDependencies = [
   'eslint',
   'ava',
@@ -19,6 +23,10 @@ const devDependencies = [
 const createIP = (name, message, store = false) => ({
   type: 'input',
   name, message, store
+})
+const createIPD = (name, message, _default) => ({
+  type: 'input',
+  name, message, default: _default
 })
 const csvToArray = csv => {
   return csv.replace(',', ' ')
@@ -56,7 +64,7 @@ module.exports = class Yanki extends generators.Base {
   }
   prompting () {
     return this.prompt([
-      createIP('name', 'Application\'s name?'),
+      createIPD('name', 'Application\'s name?', defaultName()),
       createIP('description', 'Description?'),
       createIP('githubUser', 'Your Github account?', true),
       createIP('authorName', 'Your name <email>?', true),
