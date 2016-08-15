@@ -1,4 +1,5 @@
 const generators = require('yeoman-generator')
+const mkdir = require('mkdirp')
 const devDependencies = [
   'eslint',
   'ava',
@@ -36,8 +37,12 @@ const normalizeAnswers = (answers) => {
   })
 }
 module.exports = class Yanki extends generators.Base {
-  devDependencies () {
+  install () {
     this.npmInstall(devDependencies, { 'saveDev': true })
+    this.npmInstall(this.dependencies, { 'save': true })
+  }
+  configuring () {
+    mkdir.sync('./src')
   }
   templates () {
     this.template('.babelrc')
