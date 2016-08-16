@@ -17,7 +17,7 @@ const devDependencies = [
   'nyc',
   'semantic-release',
   'eslint-config-standard',
-  'validate-commit-message'
+  'validate-commit-msg'
 ]
 const createIP = (name, message, store = false) => ({
   type: 'input',
