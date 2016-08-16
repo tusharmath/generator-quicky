@@ -16,8 +16,7 @@ const devDependencies = [
   'jsdoc-to-markdown',
   'nyc',
   'semantic-release',
-  'snazzy',
-  'standard',
+  'eslint-config-standard',
   'validate-commit-message'
 ]
 const createIP = (name, message, store = false) => ({
