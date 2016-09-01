@@ -24,3 +24,4 @@ $ yo quicky
 - Linting via JS Standard
 - Documentation generation via jsdoctomd
 - Badges via shields.io
+- Check package name availability via npm-name
