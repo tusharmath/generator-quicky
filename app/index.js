@@ -1,31 +1,14 @@
 const generators = require('yeoman-generator')
 const mkdir = require('mkdirp')
+const validatePackageName = require('./lib/validate-package-name')
+const devDependencies = require('./lib/devDependencies')
 const defaultName = () => {
   const path = process.cwd().split('/')
   return path[path.length - 1]
 }
-const devDependencies = [
-  'eslint',
-  'ava',
-  'babel-cli',
-  'babel-plugin-transform-es2015-modules-commonjs',
-  'babel-register',
-  'coveralls',
-  'cz-conventional-changelog',
-  'ghooks',
-  'jsdoc-to-markdown',
-  'nyc',
-  'semantic-release',
-  'eslint-config-standard',
-  'validate-commit-msg'
-]
 const createIP = (name, message, store = false) => ({
   type: 'input',
   name, message, store
-})
-const createIPD = (name, message, _default) => ({
-  type: 'input',
-  name, message, default: _default
 })
 const csvToArray = csv => {
   return csv.replace(',', ' ')
@@ -45,12 +28,14 @@ const normalizeAnswers = (answers) => {
 }
 module.exports = class Yanki extends generators.Base {
   install () {
-    this.npmInstall(devDependencies, { 'saveDev': true })
-    this.npmInstall(this.dependencies, { 'save': true })
+    this.npmInstall(devDependencies, {'saveDev': true})
+    this.npmInstall(this.dependencies, {'save': true})
   }
+
   configuring () {
     mkdir.sync('./src')
   }
+
   templates () {
     this.template('.babelrc')
     this.template('.eslintrc')
@@ -61,9 +46,16 @@ module.exports = class Yanki extends generators.Base {
     this.template('package.json')
     this.template('README.template.md')
   }
+
   prompting () {
     return this.prompt([
-      createIPD('name', 'Application\'s name?', defaultName()),
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Application\'s name?',
+        default: defaultName(),
+        validate: validatePackageName(this)
+      },
       createIP('description', 'Description?'),
       createIP('githubUser', 'Your Github account?', true),
       createIP('authorName', 'Your name <email>?', true),
