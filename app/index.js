@@ -2,6 +2,8 @@ const generators = require('yeoman-generator')
 const mkdir = require('mkdirp')
 const validatePackageName = require('./lib/validate-package-name')
 const devDependencies = require('./lib/devDependencies')
+const githubCreateRepo = require('./lib/github-create-repo')
+
 const defaultName = () => {
   const path = process.cwd().split('/')
   return path[path.length - 1]
@@ -36,6 +38,15 @@ module.exports = class Yanki extends generators.Base {
     mkdir.sync('./src')
   }
 
+  createRepo () {
+    return githubCreateRepo({
+      generator: this,
+      username: this.githubUser,
+      password: this.githubPassword,
+      name: this.name
+    })
+  }
+
   templates () {
     this.template('.babelrc')
     this.template('.eslintrc')
@@ -58,6 +69,11 @@ module.exports = class Yanki extends generators.Base {
       },
       createIP('description', 'Description?'),
       createIP('githubUser', 'Your Github account?', true),
+      {
+        type: 'password',
+        name: 'githubPassword',
+        message: 'Your Github password (to create a repo)'
+      },
       createIP('authorName', 'Your name <email>?', true),
       createIP('authorUrl', 'Your url?', true),
       createIP('dependencies', 'Dependencies (csv)'),
