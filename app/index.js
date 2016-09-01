@@ -1,24 +1,10 @@
 const generators = require('yeoman-generator')
 const mkdir = require('mkdirp')
+const devDependencies = require('./lib/devDependencies')
 const defaultName = () => {
   const path = process.cwd().split('/')
   return path[path.length - 1]
 }
-const devDependencies = [
-  'eslint',
-  'ava',
-  'babel-cli',
-  'babel-plugin-transform-es2015-modules-commonjs',
-  'babel-register',
-  'coveralls',
-  'cz-conventional-changelog',
-  'ghooks',
-  'jsdoc-to-markdown',
-  'nyc',
-  'semantic-release',
-  'eslint-config-standard',
-  'validate-commit-msg'
-]
 const createIP = (name, message, store = false) => ({
   type: 'input',
   name, message, store
