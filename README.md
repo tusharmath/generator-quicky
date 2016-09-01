@@ -25,3 +25,4 @@ $ yo quicky
 - Documentation generation via jsdoctomd
 - Badges via shields.io
 - Check package name availability via npm-name
+- Auto creates the github repository
