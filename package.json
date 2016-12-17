@@ -16,7 +16,7 @@
     "mkdirp": "^0.5.1",
     "npm-name": "^3.0.0",
     "ramda": "^0.22.1",
-    "yeoman-generator": "^0.24.1"
+    "yeoman-generator": "^1.0.0"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^1.2.0",
