@@ -2,6 +2,8 @@ Yeoman generator for npm modules
 
 # Install
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tusharmath/generator-quicky.svg)](https://greenkeeper.io/)
+
 ```bash
 $ npm install -g commitizen semantic-release-cli yo
 $ npm i generator-quicky -g
